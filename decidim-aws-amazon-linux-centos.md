@@ -55,6 +55,20 @@ Then, install some required packages:
 ```bash
 sudo yum install autoconf bison gcc gcc-c++ glibc-devel make openssl-devel libyaml-devel readline-devel zlib-devel ncurses-devel libffi-devel gdbm-devel
 ```
+
+Next, let's install and congigure git:
+
+```bash
+sudo yum install git
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --list
+```
+
+This configuration will save you the trouble of seeing an error message and having to revise commits after you submit them.
+
+
 Now, let's install ruby, by using the [rbenv](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04) method.
 
 

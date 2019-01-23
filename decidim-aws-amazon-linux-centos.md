@@ -159,14 +159,35 @@ Great, now we have the basic server setup in place, next step is to install Deci
 Decidim uses Postgresql as a SQL database, we are going to install it in this machine (more advanced configurations will use a separate server for the database):
 
 ```bash
-sudo apt install -y postgresql libpq-dev
+sudo yum install -y postgresql postgresql-devel
 ```
 
 We also need NodeJS as a dependency for the decidim generator, in ubuntu 18.04 it's fine to install from the repositories (we also install imageMagick, used by Decidim):
 
 ```bash
-sudo apt install -y nodejs imagemagick
+sudo apt install -y ImageMagick
 ```
+
+For nodejs installation:
+
+Amazon Linux 2 users:
+
+```bash
+sudo amazon-linux-extras install epel
+```
+
+CentOS users:
+
+```bash
+sudo yum install epel-release
+```
+
+Then do:
+
+```bash
+sudo yum install nodejs
+```
+
 Now, we use the decidim generator to create our application. Note that you still need the package `libpg-dev` in order tu run the decidim generator (in case you install postgress in another server).
 
 First, install the gem Decidim (this may take a while):

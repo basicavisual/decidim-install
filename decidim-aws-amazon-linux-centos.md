@@ -142,8 +142,9 @@ To setup Gem, execute:
 
 ```bash
 echo "gem: --no-document" > ~/.gemrc
-gem install bundler
+gem install bundler -v 1.17.3
 ```
+*We are installing this bundler version as ruby 2.5 installs bundler 2, which is [incompatible with ruby 2.5](https://github.com/rubygems/rubygems/issues/2592)*
 
 Again, you can test if everything is ok so far by running the command `gem env home`
 
@@ -165,7 +166,7 @@ sudo yum install -y postgresql postgresql-devel
 We also need NodeJS as a dependency for the decidim generator, in ubuntu 18.04 it's fine to install from the repositories (we also install imageMagick, used by Decidim):
 
 ```bash
-sudo apt install -y ImageMagick
+sudo yum install -y ImageMagick
 ```
 
 For nodejs installation:
@@ -182,7 +183,7 @@ CentOS users:
 sudo yum install epel-release
 ```
 
-Then do:
+Then after installing epel on either system, do:
 
 ```bash
 sudo yum install nodejs

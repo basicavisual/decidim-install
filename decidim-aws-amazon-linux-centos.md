@@ -196,10 +196,6 @@ Further documentation here:
 
 We also need NodeJS as a dependency for the decidim generator, in ubuntu 18.04 it's fine to install from the repositories (we also install imageMagick, used by Decidim):
 
-```bash
-sudo yum install -y ImageMagick
-```
-
 For nodejs installation:
 
 Amazon Linux 2 users:
@@ -220,7 +216,13 @@ Then after installing epel on either system, do:
 sudo yum install nodejs
 ```
 
-Now, we use the decidim generator to create our application. Note that you still need the package `libpg-dev` in order tu run the decidim generator (in case you install postgress in another server).
+Then let's install ImageMagick (case-sensitive):
+
+```bash
+sudo yum install -y ImageMagick
+```
+
+Now, we use the decidim generator to create our application. Note that you still need the postgres packages in order tu run the decidim generator (in case you install postgress in another server).
 
 First, install the gem Decidim (this may take a while):
 

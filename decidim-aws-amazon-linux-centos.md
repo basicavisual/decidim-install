@@ -160,8 +160,39 @@ Great, now we have the basic server setup in place, next step is to install Deci
 Decidim uses Postgresql as a SQL database, we are going to install it in this machine (more advanced configurations will use a separate server for the database):
 
 ```bash
-sudo yum install -y postgresql postgresql-devel
+sudo yum install postgresql-server postgresql-contrib
 ```
+
+Setup a new database cluster
+
+```bash
+sudo postgresql-setup initdb
+```
+
+Open the HBA configuration file 
+
+```bash
+sudo vi /var/lib/pgsql/data/pg_hba.conf
+```
+
+And replace "ident" with "md5" at the bottom of the file:
+
+```bash
+host    all             all             127.0.0.1/32            ident
+host    all             all             ::1/128                 ident
+```
+
+Then replace "ident" with "md5", so they look like this:
+
+```bash
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5
+````
+
+Further documentation here: 
+- [How To Install and Use PostgreSQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7)
+- [Postgres Docs](https://www.postgresql.org/docs/)
+
 
 We also need NodeJS as a dependency for the decidim generator, in ubuntu 18.04 it's fine to install from the repositories (we also install imageMagick, used by Decidim):
 
@@ -207,7 +238,7 @@ At this point, we have created a new folder in `~/decidim-app` with our code. We
 To do that, first we create the user and password in the database:
 
 ```bash
-sudo -u postgres psql -c "CREATE USER decidim_app WITH SUPERUSER CREATEDB NOCREATEROLE PASSWORD 'Password1'"
+sudo -i -u postgres psql -c "CREATE USER decidim_app WITH SUPERUSER CREATEDB NOCREATEROLE PASSWORD 'Password1'"
 ```
 Choose a good password like I did ;)
 

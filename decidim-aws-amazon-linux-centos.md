@@ -324,6 +324,15 @@ After that we need to update our app to include the extra gems, run the next com
 ```bash
 bundle install
 ```
+
+Now, use the figaro generator. The generator creates a config/application.yml file and modifies the .gitignore file to prevent the file from being checked into a git repository.
+
+```bash
+bundle exec figaro install
+```
+
+Figaro will help us store configuration values -environment variables- that often include sensitive information.
+
 Now, it's time to create the configuration file with our custom values. We already have the database credentials (we've created the user before) and we need a random string that will be used by Decidim to encrypt cookies and other security stuff.
 
 Let's generate a random string by executing the command `rake secret` inside the app folder:

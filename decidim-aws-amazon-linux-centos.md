@@ -157,13 +157,21 @@ Great, now we have the basic server setup in place, next step is to install Deci
 
 ## 3. Installing Decidim
 
-Decidim uses Postgresql as a SQL database, we are going to install it in this machine (more advanced configurations will use a separate server for the database):
+Decidim uses Postgresql as a SQL database, we are going to install it in this machine (more advanced configurations will use a separate server for the database). Ensure you install version 2.4 or newer as earlier versions are incompatible:
 
+For Amazon Linux, do:
+
+```bash
+sudo amazon-linux-extras install postgresql10
+sudo yum install postgresql-server.x86_64
+```
+
+For CentOS: 
 ```bash
 sudo yum install postgresql-server postgresql-contrib
 ```
 
-Setup a new database cluster
+Now, for either system, setup a new database cluster
 
 ```bash
 sudo postgresql-setup initdb
@@ -172,7 +180,7 @@ sudo postgresql-setup initdb
 Open the HBA configuration file 
 
 ```bash
-sudo vi /var/lib/pgsql/data/pg_hba.conf
+sudo vim /var/lib/pgsql/data/pg_hba.conf
 ```
 
 And replace "ident" with "md5" at the bottom of the file:
@@ -188,6 +196,16 @@ Then replace "ident" with "md5", so they look like this:
 host    all             all             127.0.0.1/32            md5
 host    all             all             ::1/128                 md5
 ````
+// TO DO: Format this
+# sudo yum update
+# sudo yum install postgresql-server.x86_64
+
+# sudo systemctl list-unit-files | grep postgresql
+postgresql.service                            disabled
+postgresql@.service                           disabled
+
+# sudo systemctl enable postgresql.service
+
 
 Further documentation here: 
 - [How To Install and Use PostgreSQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7)

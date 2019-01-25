@@ -168,7 +168,7 @@ sudo yum install postgresql-server.x86_64
 
 For CentOS: 
 ```bash
-sudo yum install postgresql-server postgresql-contrib
+sudo yum install postgresql-server postgresql-contrib postgresql-devel postgresql-libs
 ```
 
 Now, for either system, setup a new database cluster

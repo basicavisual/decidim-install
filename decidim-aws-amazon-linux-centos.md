@@ -452,7 +452,7 @@ If everything went fine, a very basic Decidim installation is ready to be shown 
 As a web server we will use Nginx. To install Nginx execute the next commands (the first installs nginx, the others enables the public ports in the firewall, otherwise our webserver won't be accessible):
 
 ```bash
-sudo apt -y install nginx
+sudo yum install nginx
 sudo ufw allow http
 sudo ufw allow https
 ```

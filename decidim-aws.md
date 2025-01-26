@@ -1,3 +1,9 @@
+---
+layout: default
+title: Installing in Amazon AWS with ElasticBeanstalk
+nav_order: 3
+---
+
 Install Decidim in Amazon AWS - ElasticBeanstalk
 ================================================
 
@@ -447,6 +453,32 @@ git commit -m "Add swap file"
 git push
 ```
 
+### 4.3 Add required libraries to ELB machines
+
+Since version 0.17, the package `libicu-dev` is required and is not installed by default in AWS machines. To enable it we need to create another file inside the `.ebextensions` folder:
+
+```bash
+mkdir .ebextensions
+nano .ebextensions/02_packages.config
+```
+
+With this content:
+
+```yaml
+packages:
+  yum:
+    git: []
+    libicu-devel: []
+```
+
+Create a commit:
+
+```bash
+git add .
+git commit -m "Add required libraries"
+git push
+```
+
 ## 5. Deploying Decidim
 
 When the database is created, we are ready to deploy our first version of Decidim, just type the command:
@@ -858,7 +890,7 @@ That should be all. From now we must be receiving emails from our Decidim instal
 
 ### 6.6 File storage
 
-By default any file uploaded to our Decidim will be stored locally in our server instance create by AWS. As this instances may be ephemeral, we will configure file storage using the centralized service S3 from AWS.
+By default any file uploaded to our Decidim will be stored locally in our server instance created by AWS. As this instances may be ephemeral, we will configure file storage using the centralized service S3 from AWS.
 
 First, let's configure AWS S3 to add a bucket where to store our files.
 
